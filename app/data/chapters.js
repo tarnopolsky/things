@@ -34,47 +34,50 @@ export const closing = {
 export const chapters = [
   {
     title: "Pottery wheel",
-    lede: "I signed up at a ceramics studio and learned to throw on the wheel. It's not cheap, and I'm still not great at it, but I leave every single class feeling like a slightly better version of myself. My instructor once told me I have “a good feel for clay” — I've been quietly proud of that compliment for months.",
+    lede: "Ceramics clears my head. Even when the clay refuses to cooperate, I leave the wheel feeling rested and a little lighter. Turns out you can't overthink your week when both hands are covered in mud.",
     groups: [{ key: "pottery", alt: "A piece made at the ceramics studio" }],
   },
   {
     title: "Drawing",
-    lede: "I drew almost every day for three months. Nothing serious, just sketchbook stuff — but my hand is so much steadier now than when I started, and that surprised me more than I expected.",
+    lede: "Like ceramics, drawing clears out the noise in my head. Half the fun is switching between whatever's around — markers, crayons, paint — and seeing what each one does. And every so often I look back through the sketchbook and catch myself surprised by the progress.",
     groups: [{ key: "drawing", alt: "A page from three months of near-daily drawing" }],
   },
   {
     title: "Florals",
-    lede: "Every once in a while, my husband and I go a little overboard with flowers — buy way more than any sane person needs from a wholesaler and just start arranging. It started around my birthday, when one huge armful turned into more bouquets than I could actually count. The apartment looked like a flower shop for a good couple of weeks.",
+    lede: "Every now and then my husband and I grab a big batch of flowers and spend the day arranging them. Soon the apartment looks like a flower shop.",
     groups: [{ key: "florals", alt: "Flowers arranged at home" }],
   },
   {
     title: "Houseplants",
-    lede: "My plant corner has quietly turned into a small jungle — the monsteras split, the cacti multiplied, and one of them (a Thai Constellation, if you're into that kind of thing) is apparently a bit of a rare one. I didn't plan for this to become a hobby. It just did.",
+    lede: "My plant corner has slowly become a little jungle. The monsteras filled out, the cacti kept multiplying, and one of them is apparently a bit uncommon. It wasn't planned. It just sort of happened.",
     groups: [{ key: "houseplants", alt: "A plant from the balcony jungle" }],
   },
   {
     title: "Cooking & baking & eating",
-    lede: "I baked more bread this year than in the rest of my life combined. Sourdough rye, almost every Saturday, plus pancakes, jam, pickled everything, a brisket I was genuinely proud of, and — because why not — homemade ice cream. I've started keeping a running list of what actually worked, recipe by recipe.",
+    lede: "I've always been a foodie, and lately I've been cooking a lot more. I finally learned to bake my own bread, plus a few other treats along the way. I like keeping recipes simple, so I'll be sharing my favorites here.",
     groups: [{ key: "food", alt: "Something cooked or baked at home" }],
     // Notes are yours to fill in — anything without one renders as a placeholder.
     recipes: [
-      { dish: "Rye sourdough bread", note: "Baked it almost every Saturday." },
-      { dish: "Pancakes" },
-      { dish: "Jam" },
+      { dish: "Blinches" },
+      { dish: "Orange Jam" },
       { dish: "Pickled radish" },
-      { dish: "Pickled cucumbers" },
+      { dish: "Pickled mushrooms" },
       { dish: "Brisket" },
       { dish: "Homemade ice cream" },
+      { dish: "Homemade bread" },
+      { dish: "Banana bread" },
+      { dish: "Greek Fava" },
+      { dish: "Sirniki" },
     ],
   },
   {
     title: "Tennis",
-    lede: "Once a week, with zero ambition to get good at it. I've never really liked sports, but showing up became its own small ritual.",
+    lede: "Tennis was something I wanted to do as a kid but never could. Now I finally am. Funny how being grown-up means you can finally chase the little dreams you gave up on.",
     groups: [{ key: "tennis", alt: "The tennis court, most often empty" }],
   },
   {
     title: "Moments",
-    lede: "I've always collected cameras — old film ones mostly, a couple of digital ones too — but they'd been sitting in a drawer for years. This year I finally pulled them all out, cleaned the ones that needed it, and started actually using them again. There's something nice about slowing down enough to load film.",
+    lede: "Just some beautiful moments I've happened to capture lately.",
     // Photos of the collection itself are still to come; add them as a second group here.
     groups: [{ key: "moments", alt: "A photograph taken this year" }],
   },

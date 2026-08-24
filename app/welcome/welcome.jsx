@@ -283,7 +283,7 @@ export function Welcome() {
                               !note && "opacity-45",
                             )}
                           >
-                            {note ?? "—"}
+                            {note ?? "coming soon…"}
                           </dd>
                         </div>
                       ))}
