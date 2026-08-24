@@ -22,20 +22,52 @@ export function Welcome() {
   const viewedChapter = view && chapters.find((c) => c.id === view.chapterId);
   const viewedGroup = viewedChapter?.groups.find((g) => g.key === view.groupKey);
 
-  // Opening a tall chapter can leave its own heading somewhere off-screen, so
-  // bring it back to the top of the page — but only when it has actually drifted.
-  const onValueChange = useCallback((value) => {
-    setOpen(value);
-    if (!value) return;
-    requestAnimationFrame(() => {
-      const el = headers.current[value];
+  // Hold the clicked chapter's heading still while the accordion animates.
+  //
+  // scrollIntoView is unusable here: it locks its target scroll position at call
+  // time, but opening one chapter collapses another, so hundreds of pixels can
+  // vanish from above the target mid-flight and the scroll sails straight past it.
+  // Instead, re-measure every frame and correct — the anchor cannot drift because
+  // nothing is predicted. A heading already in a comfortable spot stays exactly
+  // where it was clicked; one that is off-screen or too low eases up to REST.
+  const onValueChange = useCallback(
+    (value) => {
+      const el = headers.current[value || open];
+      const from = el?.getBoundingClientRect().top ?? 0;
+      setOpen(value);
       if (!el) return;
-      const { top } = el.getBoundingClientRect();
-      if (top < 0 || top > window.innerHeight * 0.4) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }, []);
+
+      const REST = 88;
+      const settled = from >= REST && from <= window.innerHeight * 0.4;
+      // Closing a chapter never needs the heading to move.
+      const to = !value || settled ? from : REST;
+
+      const DURATION = 320; // comfortably past the 200ms accordion animation
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const started = performance.now();
+      let cancelled = false;
+
+      // Never fight a reader who takes over mid-flight.
+      const stop = () => (cancelled = true);
+      const opts = { passive: true };
+      for (const e of ["wheel", "touchstart", "keydown"]) addEventListener(e, stop, opts);
+
+      const step = (now) => {
+        if (cancelled) return cleanup();
+        const t = Math.min(1, (now - started) / DURATION);
+        const want = reduced ? to : from + (to - from) * ease(t);
+        const drift = el.getBoundingClientRect().top - want;
+        if (Math.abs(drift) > 0.5) scrollBy(0, drift);
+        t < 1 ? requestAnimationFrame(step) : cleanup();
+      };
+      const cleanup = () => {
+        for (const e of ["wheel", "touchstart", "keydown"]) removeEventListener(e, stop, opts);
+      };
+      requestAnimationFrame(step);
+    },
+    [open]
+  );
 
   return (
     <main className="mx-auto w-full max-w-[78rem] px-6 pb-24 sm:px-10">

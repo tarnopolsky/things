@@ -141,3 +141,9 @@ Two constraints worth knowing before editing the gallery:
   is measured once, so pinning it clips content that grows afterwards — exactly what a
   gallery does as images decode.
 - The strip uses a roving tabindex, so a 50-photo strip is one tab stop rather than 50.
+- **Do not use `scrollIntoView` to bring an opened chapter into view.** It fixes its target
+  scroll position at call time, but opening one chapter collapses another, so hundreds of
+  pixels can disappear from above the target while the scroll is still running — it then
+  sails past and lands mid-gallery with the heading off-screen. `onValueChange` in
+  `welcome.jsx` instead re-measures the heading every frame for 320ms and corrects, which
+  cannot drift because it predicts nothing.
