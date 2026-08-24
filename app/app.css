@@ -7,13 +7,23 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+}
+
+/* Horizontal runs of photographs are dragged and paged, never scrollbar-driven. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-background;
+  color-scheme: light;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -141,5 +151,47 @@ body {
   }
   html {
     @apply font-mono;
+  }
+}
+/* ---------------------------------------------------------------------------
+   Quiet paper
+   A warm, low-chroma ground for photographs. Everything in the gallery draws
+   from these tokens rather than from `dark:` utilities, so the media query
+   below is all that dark mode needs.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --background: oklch(0.987 0.0055 85);
+  --foreground: oklch(0.245 0.013 62);
+  --card: oklch(0.987 0.0055 85);
+  --card-foreground: oklch(0.245 0.013 62);
+  --muted: oklch(0.955 0.008 84);
+  --muted-foreground: oklch(0.525 0.014 68);
+  --border: oklch(0.893 0.011 82);
+  --input: oklch(0.893 0.011 82);
+  --ring: oklch(0.62 0.02 70);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.176 0.008 72);
+    --foreground: oklch(0.93 0.008 82);
+    --card: oklch(0.213 0.009 74);
+    --card-foreground: oklch(0.93 0.008 82);
+    --muted: oklch(0.262 0.009 74);
+    --muted-foreground: oklch(0.655 0.011 78);
+    --border: oklch(1 0 0 / 12%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.6 0.012 76);
+  }
+}
+
+@layer base {
+  html {
+    @apply font-sans antialiased;
+  }
+  /* Fraunces carries a lot of optical-size character; hold it steady. */
+  .font-display {
+    font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 96;
   }
 }

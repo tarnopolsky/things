@@ -1,84 +1,51 @@
-# Welcome to React Router!
+# A Conscious Pause
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A personal photo essay — fifteen chapters covering January 2026 onward, each opening into film
+strips of photographs with a full-screen viewer. Built with React Router, Tailwind and Radix,
+deployed as static files.
 
-## Features
+The chapter copy is transcribed from [content.md](content.md) and [plan.md](plan.md). The
+intro is the exception — it was rewritten to read as private rather than self-promoting, so
+it no longer matches content.md's opening.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
+## Getting started
 
 ```bash
 npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
+npm run photos   # build web derivatives from app/photos/ (first run takes a few minutes)
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The site runs at `http://localhost:5173`.
 
-## Building for Production
+`npm run photos` is incremental, so later runs only encode photos that are new. You only
+need it after adding, removing or re-filing photographs.
 
-Create a production build:
+## Adding or rearranging photographs
+
+Two files control everything:
+
+- **`scripts/photo-map.js`** — which folder feeds which gallery group, and which photo opens it.
+- **`app/data/chapters.js`** — the chapters themselves: title, prose, order, groups, recipes,
+  plus the intro and closing copy.
+
+Add photos by dropping them into a folder under `app/photos/` and running `npm run photos`;
+move a photo between groups by moving the file. Reorder or rewrite chapters by editing the
+array in `chapters.js` — chapter numbers follow array position, so they renumber themselves.
+
+See [CLAUDE.md](CLAUDE.md) for the full pipeline, including how to prune deleted photos.
+
+## Building for production
 
 ```bash
-npm run build
+npm run build   # emits fully static HTML to build/client/
+npm start       # preview that build locally
 ```
 
-## Deployment
+The site is prerendered — `build/client/` is plain HTML, CSS, JS and images with no Node
+server behind it. Deploy that folder to Netlify, Cloudflare Pages, GitHub Pages, S3, or any
+static host.
 
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Note that `app/photos/` (the full-resolution originals) is gitignored, while the generated
+`public/gallery/` derivatives are committed — so a fresh clone can build and deploy without
+the originals, but needs them to regenerate anything.
