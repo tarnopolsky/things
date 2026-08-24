@@ -20,7 +20,9 @@ export function Welcome() {
   const headers = useRef({});
 
   const viewedChapter = view && chapters.find((c) => c.id === view.chapterId);
-  const viewedGroup = viewedChapter?.groups.find((g) => g.key === view.groupKey);
+  const viewedGroup = viewedChapter?.groups.find(
+    (g) => g.key === view.groupKey,
+  );
 
   // Hold the clicked chapter's heading still while the accordion animates.
   //
@@ -43,7 +45,9 @@ export function Welcome() {
       const to = !value || settled ? from : REST;
 
       const DURATION = 320; // comfortably past the 200ms accordion animation
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       const ease = (t) => 1 - Math.pow(1 - t, 3);
       const started = performance.now();
       let cancelled = false;
@@ -51,7 +55,8 @@ export function Welcome() {
       // Never fight a reader who takes over mid-flight.
       const stop = () => (cancelled = true);
       const opts = { passive: true };
-      for (const e of ["wheel", "touchstart", "keydown"]) addEventListener(e, stop, opts);
+      for (const e of ["wheel", "touchstart", "keydown"])
+        addEventListener(e, stop, opts);
 
       const step = (now) => {
         if (cancelled) return cleanup();
@@ -62,11 +67,12 @@ export function Welcome() {
         t < 1 ? requestAnimationFrame(step) : cleanup();
       };
       const cleanup = () => {
-        for (const e of ["wheel", "touchstart", "keydown"]) removeEventListener(e, stop, opts);
+        for (const e of ["wheel", "touchstart", "keydown"])
+          removeEventListener(e, stop, opts);
       };
       requestAnimationFrame(step);
     },
-    [open]
+    [open],
   );
 
   return (
@@ -84,7 +90,12 @@ export function Welcome() {
         </div>
       </header>
 
-      <Accordion type="single" collapsible value={open} onValueChange={onValueChange}>
+      <Accordion
+        type="single"
+        collapsible
+        value={open}
+        onValueChange={onValueChange}
+      >
         {chapters.map((chapter) => {
           const hasPhotos = chapter.count > 0;
           const labelled = chapter.groups.length > 1;
@@ -99,7 +110,7 @@ export function Welcome() {
               <AccordionTrigger
                 className={cn(
                   "items-center gap-5 rounded-none py-7 text-base font-normal hover:no-underline sm:gap-8 sm:py-9",
-                  "focus-visible:ring-0 focus-visible:ring-offset-0"
+                  "focus-visible:ring-0 focus-visible:ring-offset-0",
                 )}
                 indicator={
                   <span
@@ -108,7 +119,7 @@ export function Welcome() {
                       "relative size-3 shrink-0 self-center text-muted-foreground transition-colors duration-300 group-hover/accordion-trigger:text-foreground",
                       // Only one element in the row may claim the free space, or
                       // flexbox splits it and the count drifts into mid-row.
-                      hasPhotos ? "ml-8" : "ml-auto"
+                      hasPhotos ? "ml-8" : "ml-auto",
                     )}
                   >
                     <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-current" />
@@ -120,7 +131,7 @@ export function Welcome() {
                   className={cn(
                     "font-display text-[clamp(1.25rem,2.4vw,1.625rem)] leading-tight font-light -tracking-[0.01em]",
                     "transition-opacity duration-300",
-                    !hasPhotos && "text-muted-foreground"
+                    !hasPhotos && "text-muted-foreground",
                   )}
                 >
                   {chapter.title}
@@ -163,7 +174,7 @@ export function Welcome() {
                         "leading-relaxed text-balance",
                         hasPhotos
                           ? "text-[1.0625rem] text-muted-foreground"
-                          : "font-display text-[1.375rem] leading-[1.5] font-light text-foreground/85"
+                          : "font-display text-[1.375rem] leading-[1.5] font-light text-foreground/85",
                       )}
                     >
                       {chapter.lede}
@@ -192,15 +203,29 @@ export function Welcome() {
                     overflow-hidden for its collapse animation, so a negative-margin
                     breakout would just be clipped. The edge fade carries the
                     sense of the run continuing instead. */}
-                <div className={cn("[--gutter:0px] space-y-14", !chapter.lede && "pt-2")}>
+                <div
+                  className={cn(
+                    "[--gutter:0px] space-y-14",
+                    !chapter.lede && "pt-2",
+                  )}
+                >
                   {chapter.groups.map((group) => (
                     <section key={group.key}>
                       {labelled && (
-                        <div className={cn("mb-5 flex items-baseline gap-4", MEASURE, "max-w-none")}>
+                        <div
+                          className={cn(
+                            "mb-5 flex items-baseline gap-4",
+                            MEASURE,
+                            "max-w-none",
+                          )}
+                        >
                           <h3 className="font-mono text-[0.6875rem] tracking-[0.18em] text-muted-foreground uppercase">
                             {group.label}
                           </h3>
-                          <span aria-hidden="true" className="h-px flex-1 bg-border" />
+                          <span
+                            aria-hidden="true"
+                            className="h-px flex-1 bg-border"
+                          />
                           <span className="font-mono text-[0.6875rem] tabular-nums text-muted-foreground/70">
                             {String(group.photos.length).padStart(2, "0")}
                           </span>
@@ -208,7 +233,12 @@ export function Welcome() {
                       )}
 
                       {group.text && (
-                        <p className={cn(MEASURE, "mb-8 text-[1.0625rem] leading-relaxed text-muted-foreground text-balance")}>
+                        <p
+                          className={cn(
+                            MEASURE,
+                            "mb-8 text-[1.0625rem] leading-relaxed text-muted-foreground text-balance",
+                          )}
+                        >
                           {group.text}
                         </p>
                       )}
@@ -216,9 +246,17 @@ export function Welcome() {
                       <FilmStrip
                         photos={group.photos}
                         alt={group.alt}
-                        label={group.label ? `${chapter.title} — ${group.label}` : chapter.title}
+                        label={
+                          group.label
+                            ? `${chapter.title} — ${group.label}`
+                            : chapter.title
+                        }
                         onOpen={(index) =>
-                          setView({ chapterId: chapter.id, groupKey: group.key, index })
+                          setView({
+                            chapterId: chapter.id,
+                            groupKey: group.key,
+                            index,
+                          })
                         }
                       />
                     </section>
@@ -232,12 +270,17 @@ export function Welcome() {
                     </h3>
                     <dl className="mt-5 divide-y divide-border border-t border-border">
                       {chapter.recipes.map(({ dish, note }) => (
-                        <div key={dish} className="flex flex-wrap gap-x-6 gap-y-1 py-3">
-                          <dt className="min-w-[14ch] flex-1 text-[0.9375rem]">{dish}</dt>
+                        <div
+                          key={dish}
+                          className="flex flex-wrap gap-x-6 gap-y-1 py-3"
+                        >
+                          <dt className="min-w-[14ch] flex-1 text-[0.9375rem]">
+                            {dish}
+                          </dt>
                           <dd
                             className={cn(
                               "flex-[2] text-[0.9375rem] text-muted-foreground",
-                              !note && "opacity-45"
+                              !note && "opacity-45",
                             )}
                           >
                             {note ?? "—"}
@@ -253,10 +296,47 @@ export function Welcome() {
         })}
       </Accordion>
 
-      <footer className="max-w-[54ch] pt-20">
-        {/* Small on purpose. At display size, with a rule down the side, a quote stops
-            being something shared and becomes a thesis being asserted. */}
-        <figure className="mb-14 max-w-[40ch]">
+      {/* Contacts sit on the page's left edge with everything else. The second column is
+          the Bowie quote, currently hidden — see the commented-out <figure> below. Restore
+          `lg:grid-cols-2` at the same time if you bring it back. */}
+      <footer className="grid gap-x-16 gap-y-10 pt-20">
+        <div>
+          <p className="text-[1.0625rem] leading-relaxed text-muted-foreground">
+            {closing.invitation}{" "}
+            <a
+              href={`mailto:${closing.email}`}
+              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+            >
+              {closing.email}
+            </a>
+          </p>
+
+          <p className="mt-8">
+            {/* Inline, not inline-flex: as a flex item the arrow stops flowing with
+              the text and lands mid-line as soon as the label wraps. */}
+            <a
+              href={closing.link.href}
+              className="group/link text-[1.0625rem] text-foreground underline-offset-[6px] hover:underline"
+            >
+              {closing.link.label}
+              <span
+                aria-hidden="true"
+                className="ml-2 inline-block transition-transform duration-300 ease-out group-hover/link:translate-x-1 motion-reduce:transition-none"
+              >
+                →
+              </span>
+            </a>
+          </p>
+        </div>
+
+        {/* HIDDEN — the David Bowie quote. Kept, not deleted: uncomment this block and put
+            `lg:grid-cols-2` back on the <footer> above to restore it. The text itself still
+            lives in `intro.quote` / `intro.attribution` in app/data/chapters.js.
+
+            Small on purpose. At display size, with a rule down the side, a quote stops
+            being something shared and becomes a thesis being asserted.
+
+        <figure className="max-w-[36ch] lg:pt-1">
           <blockquote className="text-[0.9375rem] leading-relaxed text-muted-foreground italic">
             “{intro.quote}”
           </blockquote>
@@ -264,35 +344,7 @@ export function Welcome() {
             {intro.attribution}
           </figcaption>
         </figure>
-
-        <p className="text-[1.0625rem] text-foreground">{closing.name}</p>
-
-        <p className="mt-3 text-[1.0625rem] leading-relaxed text-muted-foreground">
-          {closing.invitation}{" "}
-          <a
-            href={`mailto:${closing.email}`}
-            className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
-          >
-            {closing.email}
-          </a>
-        </p>
-
-        <p className="mt-8">
-          {/* Inline, not inline-flex: as a flex item the arrow stops flowing with
-              the text and lands mid-line as soon as the label wraps. */}
-          <a
-            href={closing.link.href}
-            className="group/link text-[1.0625rem] text-foreground underline-offset-[6px] hover:underline"
-          >
-            {closing.link.label}
-            <span
-              aria-hidden="true"
-              className="ml-2 inline-block transition-transform duration-300 ease-out group-hover/link:translate-x-1 motion-reduce:transition-none"
-            >
-              →
-            </span>
-          </a>
-        </p>
+        */}
       </footer>
 
       <Lightbox

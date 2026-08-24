@@ -4,8 +4,8 @@ A single personal page: ten sections of hobbies, each an accordion row that open
 or more horizontally-scrolling film strips of photographs, with a full-screen lightbox. Ends
 with contact details and a link to a professional résumé at tarnopolsky.github.io.
 
-The author's name is deliberately **not** above the heading — it sits in the `<title>` and in
-the footer signature, so the page reads as signed rather than announced.
+The author's name appears **nowhere on the page itself** — only in the `<title>`
+("Natasha Tarnopolsky — Things I've been up to"). The page is identified, not announced.
 
 ## Tone — read before touching the copy or the type
 
@@ -17,11 +17,11 @@ do not reintroduce:**
   any of this — no layoff, no pause, no "free time". It is a list of things made, not an
   account. The old title "A Conscious Pause" went for the same reason (*conscious* is
   wellness-brand vocabulary; it asserts a philosophy before saying anything).
-- **A pull-quote set at display size.** There *is* a David Bowie line, but it sits at the
-  very bottom above the contact details, small, italic and muted, with no rule down the side
-  — a parting note, not a thesis. Enlarging it, giving it a border, or moving it back up to
-  the header turns it straight into "here is my position", which is what got the previous
-  one deleted.
+- **A pull-quote.** There was a David Bowie line at the foot of the page; it is now hidden —
+  the `<figure>` in `welcome.jsx` is commented out, and `intro.quote` / `intro.attribution`
+  are kept in `chapters.js` but unused. If it is ever restored, keep it small, italic and
+  muted with no rule down the side, and put `lg:grid-cols-2` back on the `<footer>`. At
+  display size a quote stops being something shared and becomes a thesis being asserted.
 - **A total photo count** ("15 chapters · 191 photographs"). Quantifying reads as portfolio.
   The per-row counts stay — those are navigation.
 - **Section numbers** (01–15) and the word *chapters* in the UI. Numbering hobbies is a book

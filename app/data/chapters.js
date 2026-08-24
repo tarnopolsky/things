@@ -10,9 +10,8 @@ import photos from "./photos.json";
 // The page deliberately says nothing about why there was time for any of this. It is a list
 // of things done, not an account of a period.
 //
-// `quote` still lives here with the rest of the intro copy, but it renders at the very
-// bottom of the page, above the contact details — small, as a parting note rather than a
-// statement. See the tone note in CLAUDE.md before enlarging it or moving it back up.
+// `quote` / `attribution` are kept but NOT currently rendered — the markup that showed them
+// in the footer is commented out in welcome.jsx. Uncomment that block to bring them back.
 export const intro = {
   title: "Things I've been up to",
   paragraphs: [
