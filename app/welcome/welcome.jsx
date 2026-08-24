@@ -7,15 +7,15 @@ import {
 } from "@/components/ui/accordion";
 import { FilmStrip } from "@/components/gallery/film-strip";
 import { Lightbox } from "@/components/gallery/lightbox";
-import { chapters, closing, intro, peek, totalPhotos } from "@/data/chapters";
+import { chapters, closing, intro, peek } from "@/data/chapters";
 import { cn } from "@/lib/utils";
 
-// Prose sits in a narrow measure indented to the chapter title; photographs run
-// the full width of the column beneath it.
-const MEASURE = "max-w-[46ch] sm:pl-[3.25rem]";
+// Prose sits in a narrow measure; photographs run the full width beneath it.
+const MEASURE = "max-w-[46ch]";
 
 export function Welcome() {
-  const [open, setOpen] = useState(chapters[0].id);
+  // Everything starts closed: the page opens as a plain list of what is inside.
+  const [open, setOpen] = useState("");
   const [view, setView] = useState(null);
   const headers = useRef({});
 
@@ -71,41 +71,17 @@ export function Welcome() {
 
   return (
     <main className="mx-auto w-full max-w-[78rem] px-6 pb-24 sm:px-10">
-      <header className="border-b border-border py-20 sm:py-28">
-        <p className="font-mono text-[0.6875rem] tracking-[0.22em] text-muted-foreground uppercase">
-          {intro.eyebrow}
-        </p>
-        <h1 className="mt-7 font-display text-[clamp(2.75rem,8vw,5.25rem)] leading-[0.95] font-light -tracking-[0.02em]">
+      {/* Kept deliberately quiet: no pull-quote, no photo count, no tracked-out caps.
+          Those read as a statement being made rather than a page being signed. */}
+      <header className="border-b border-border py-16 sm:py-20">
+        <h1 className="font-display text-[clamp(1.875rem,4vw,2.75rem)] leading-[1.1] font-light -tracking-[0.01em]">
           {intro.title}
         </h1>
-
-        {/* Two columns so the intro spans the header rather than hugging the left:
-            the opening line runs large as a standfirst, the rest sits beside it. */}
-        <div className="mt-12 grid gap-x-14 gap-y-8 lg:grid-cols-[1.15fr_1fr]">
-          <p className="font-display text-[clamp(1.375rem,2.2vw,1.75rem)] leading-[1.45] font-light text-foreground/85 text-balance">
-            {intro.paragraphs[0]}
-          </p>
-          <div className="space-y-5 text-[1.0625rem] leading-relaxed text-muted-foreground">
-            {intro.paragraphs.slice(1).map((p) => (
-              <p key={p.slice(0, 24)}>{p}</p>
-            ))}
-          </div>
+        <div className="mt-8 max-w-[58ch] space-y-4 text-[1.0625rem] leading-relaxed text-muted-foreground">
+          {intro.paragraphs.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
         </div>
-
-        <blockquote className="mt-14 max-w-[46ch] border-l border-foreground/25 pl-6">
-          <p className="font-display text-[1.375rem] leading-[1.5] font-light text-foreground/85 text-balance">
-            {intro.quote}
-          </p>
-          <footer className="mt-3 font-mono text-[0.6875rem] tracking-wider text-muted-foreground">
-            — <cite className="not-italic">{intro.attribution}</cite>
-          </footer>
-        </blockquote>
-
-        <p className="mt-12 font-mono text-[0.6875rem] tracking-wider text-muted-foreground/80 tabular-nums">
-          {chapters.length} chapters
-          <span className="mx-2 opacity-40">·</span>
-          {totalPhotos} photographs
-        </p>
       </header>
 
       <Accordion type="single" collapsible value={open} onValueChange={onValueChange}>
@@ -140,13 +116,9 @@ export function Welcome() {
                   </span>
                 }
               >
-                <span className="w-7 shrink-0 self-center font-mono text-[0.6875rem] tabular-nums text-muted-foreground/70">
-                  {chapter.index}
-                </span>
-
                 <span
                   className={cn(
-                    "font-display text-[clamp(1.375rem,3.2vw,2rem)] leading-tight font-light -tracking-[0.01em]",
+                    "font-display text-[clamp(1.25rem,2.4vw,1.625rem)] leading-tight font-light -tracking-[0.01em]",
                     "transition-opacity duration-300",
                     !hasPhotos && "text-muted-foreground"
                   )}
@@ -196,6 +168,23 @@ export function Welcome() {
                     >
                       {chapter.lede}
                     </p>
+
+                    {chapter.links && (
+                      <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
+                        {chapter.links.map((l) => (
+                          <li key={l.label}>
+                            <a
+                              href={l.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+                            >
+                              {l.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
 
@@ -264,13 +253,31 @@ export function Welcome() {
         })}
       </Accordion>
 
-      <footer className="max-w-[54ch] pt-20 sm:pl-[3.25rem]">
-        <div className="space-y-5 text-[1.0625rem] leading-relaxed text-muted-foreground">
-          {closing.paragraphs.map((p) => (
-            <p key={p.slice(0, 24)}>{p}</p>
-          ))}
-        </div>
-        <p className="mt-10">
+      <footer className="max-w-[54ch] pt-20">
+        {/* Small on purpose. At display size, with a rule down the side, a quote stops
+            being something shared and becomes a thesis being asserted. */}
+        <figure className="mb-14 max-w-[40ch]">
+          <blockquote className="text-[0.9375rem] leading-relaxed text-muted-foreground italic">
+            “{intro.quote}”
+          </blockquote>
+          <figcaption className="mt-2 text-[0.8125rem] text-muted-foreground/70">
+            {intro.attribution}
+          </figcaption>
+        </figure>
+
+        <p className="text-[1.0625rem] text-foreground">{closing.name}</p>
+
+        <p className="mt-3 text-[1.0625rem] leading-relaxed text-muted-foreground">
+          {closing.invitation}{" "}
+          <a
+            href={`mailto:${closing.email}`}
+            className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+          >
+            {closing.email}
+          </a>
+        </p>
+
+        <p className="mt-8">
           {/* Inline, not inline-flex: as a flex item the arrow stops flowing with
               the text and lands mid-line as soon as the label wraps. */}
           <a
@@ -290,7 +297,6 @@ export function Welcome() {
 
       <Lightbox
         photos={viewedGroup?.photos ?? []}
-        eyebrow={viewedChapter?.index}
         title={
           viewedGroup?.label
             ? `${viewedChapter.title} — ${viewedGroup.label}`

@@ -13,6 +13,7 @@ export const SOURCES = {
   drawing: [{ dir: "drawing" }],
   florals: [{ dir: "florals" }],
 
+  forSale: [{ dir: "forSale" }], // folder name is case-sensitive on Linux — keep the capital S
   houseplants: [{ dir: "houseplants" }],
   food: [{ dir: "cooking-baking-fooding" }],
   tennis: [{ dir: "tennis-and-sports" }],

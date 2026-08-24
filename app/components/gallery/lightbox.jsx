@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 //
 // It opens on one group, not a whole chapter — so paging through Make's pottery
 // stays in pottery rather than running on into the drawings.
-export function Lightbox({ photos = [], eyebrow, title, alt, index, onIndex, onClose }) {
+export function Lightbox({ photos = [], title, alt, index, onIndex, onClose }) {
   const open = index !== null;
   const photo = open ? photos[index] : null;
   const rail = useRef(null);
@@ -67,9 +67,6 @@ export function Lightbox({ photos = [], eyebrow, title, alt, index, onIndex, onC
           </VisuallyHidden.Root>
 
           <header className="flex shrink-0 items-baseline gap-4 px-5 py-4 sm:px-8">
-            <span className="font-mono text-[0.6875rem] tracking-[0.16em] text-neutral-500 uppercase">
-              {eyebrow}
-            </span>
             <span className="truncate text-sm text-neutral-300">{title}</span>
             <span className="ml-auto font-mono text-[0.6875rem] tabular-nums text-neutral-500">
               {String(index + 1).padStart(2, "0")}

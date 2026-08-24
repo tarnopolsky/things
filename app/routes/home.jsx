@@ -2,11 +2,12 @@ import { Welcome } from "../welcome/welcome";
 
 export function meta() {
   return [
-    { title: "A Conscious Pause" },
+    // The name lives here rather than on the page itself.
+    { title: "Natasha Tarnopolsky — Things I've been up to" },
     {
       name: "description",
       content:
-        "What I did with a deliberate pause — clay, drawing, flowers, bread, day trips, and a lot of photographs.",
+        "Hobbies, mostly — pottery, drawing, flowers, bread, houseplants, day trips, and the photographs.",
     },
   ];
 }

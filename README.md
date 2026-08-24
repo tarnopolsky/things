@@ -1,12 +1,12 @@
-# A Conscious Pause
+# Things I've been up to
 
-A personal photo essay — fifteen chapters covering January 2026 onward, each opening into film
-strips of photographs with a full-screen viewer. Built with React Router, Tailwind and Radix,
-deployed as static files.
+A personal page — ten sections of hobbies, each opening into film strips of
+photographs with a full-screen viewer. Built with React Router, Tailwind and Radix, deployed
+as static files.
 
-The chapter copy is transcribed from [content.md](content.md) and [plan.md](plan.md). The
-intro is the exception — it was rewritten to read as private rather than self-promoting, so
-it no longer matches content.md's opening.
+The section copy is transcribed from [content.md](content.md) and [plan.md](plan.md); the
+intro and closing were rewritten and deliberately differ. See the tone note at the top of
+[CLAUDE.md](CLAUDE.md) before changing the copy or the type sizes.
 
 ## Getting started
 

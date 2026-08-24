@@ -1782,6 +1782,72 @@
       "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwAgCdASoMABAAA4BaJaAC7AYwTakxR2/aQAD+79RyiiLggnvm4TRwAy3DvpyH43UbQ5hi6PAl4mp28v4QMJ2PxECptKQGez4Rs2zJu80Kh7wkVNR70A4co+ULtKzWU3r+UKCAAAA="
     }
   ],
+  "forSale": [
+    {
+      "id": "forsale-img-3452",
+      "src": "/gallery/forsale-img-3452",
+      "avif": [
+        400,
+        800,
+        1600
+      ],
+      "webp": [
+        400,
+        800
+      ],
+      "w": 3024,
+      "h": 4032,
+      "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoMABAAA4BaJYwCdADL961UKk4AAP7b179S0707JdctoJs5W3QnFHaWcOvNE7pSicl4PNhqe1o3qYXg5EKB9PLMvRMPdfzO4O4gllxBwgDLU0eAGu6HAAAA"
+    },
+    {
+      "id": "forsale-img-3486",
+      "src": "/gallery/forsale-img-3486",
+      "avif": [
+        400,
+        800,
+        1600
+      ],
+      "webp": [
+        400,
+        800
+      ],
+      "w": 3024,
+      "h": 4032,
+      "blur": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABQAgCdASoMABAAA4BaJbACdAYwxwS/HCqZz/AA/n6gsPUZaqWGlnd3+fdjidWB7SRc+Ai/34cRol4XvUsZUZa4pvmR3vmP96DGq/8HuEp1deknAr32+naCPndrteLfNX7VqgfzAlIHUoHtr4djvnvz/Td4P0m6uv3AmgAA"
+    },
+    {
+      "id": "forsale-img-4490",
+      "src": "/gallery/forsale-img-4490",
+      "avif": [
+        400,
+        800,
+        1600
+      ],
+      "webp": [
+        400,
+        800
+      ],
+      "w": 3024,
+      "h": 4032,
+      "blur": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoMABAAA4BaJZACdADz4Du5AAD+3yduu/LcZe5k7usdhhgpNn/GDGJP6LBQ80SAHklrHEmi1RezYwbdDMUf48gwAAA="
+    },
+    {
+      "id": "forsale-img-4570",
+      "src": "/gallery/forsale-img-4570",
+      "avif": [
+        400,
+        800,
+        1600
+      ],
+      "webp": [
+        400,
+        800
+      ],
+      "w": 3024,
+      "h": 4032,
+      "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQAgCdASoMABAAA4BaJagCsADdUaS4F7AAAP7j0bFPufkM/81aSxc2Y7s6ASrRvbfUWBRN3Apakp13TxSOSx3lFJyps2AysZImDWEAlbFxcTacRa3KAcrOksvUYZqxHcWLxPXZHVAAAA=="
+    }
+  ],
   "houseplants": [
     {
       "id": "houseplants-img-3819",

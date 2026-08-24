@@ -1,22 +1,45 @@
-# quite-recovery — "A Conscious Pause"
+# quite-recovery — "Things I've been up to"
 
-A single-page personal photo essay covering January 2026 onward. Fifteen chapters, each an
-accordion row that opens into one or more horizontally-scrolling film strips of photographs,
-with a full-screen lightbox. Links back to a résumé at tarnopolsky.github.io.
+A single personal page: ten sections of hobbies, each an accordion row that opens into one
+or more horizontally-scrolling film strips of photographs, with a full-screen lightbox. Ends
+with contact details and a link to a professional résumé at tarnopolsky.github.io.
 
-Source copy lives in [content.md](content.md) and [plan.md](plan.md) at the repo root, and
-the chapter prose in `app/data/chapters.js` is transcribed from them verbatim. **The intro is
-the exception** — it was rewritten to read as private rather than self-promoting (the page is
-meant to be sendable to new colleagues), so it deliberately no longer matches content.md's
-opening. The pull-quote is a line from the film *Soul* (2020), replacing content.md's
-"financial cushion" line for the same reason.
+The author's name is deliberately **not** above the heading — it sits in the `<title>` and in
+the footer signature, so the page reads as signed rather than announced.
+
+## Tone — read before touching the copy or the type
+
+The page is meant to be sendable to new colleagues without reading as a flex. An earlier
+version read as show-offy, and the fix was as much visual as textual. **Deliberately absent,
+do not reintroduce:**
+
+- Any framing of the page as a *period of life*. It says nothing about why there was time for
+  any of this — no layoff, no pause, no "free time". It is a list of things made, not an
+  account. The old title "A Conscious Pause" went for the same reason (*conscious* is
+  wellness-brand vocabulary; it asserts a philosophy before saying anything).
+- **A pull-quote set at display size.** There *is* a David Bowie line, but it sits at the
+  very bottom above the contact details, small, italic and muted, with no rule down the side
+  — a parting note, not a thesis. Enlarging it, giving it a border, or moving it back up to
+  the header turns it straight into "here is my position", which is what got the previous
+  one deleted.
+- **A total photo count** ("15 chapters · 191 photographs"). Quantifying reads as portfolio.
+  The per-row counts stay — those are navigation.
+- **Section numbers** (01–15) and the word *chapters* in the UI. Numbering hobbies is a book
+  metaphor that lends them borrowed weight.
+- **Display type above ~2.75rem, tracked-out caps, magazine-style two-column intros, and
+  em-dash subtitles** in section names. Layout carries tone on its own: at 84px, Fraunces
+  turns modest text into a statement. The typeface is fine; the size was not.
+
+The section prose in `app/data/chapters.js` is transcribed verbatim from
+[content.md](content.md) and [plan.md](plan.md). The intro and closing are the exceptions —
+both were rewritten for the reasons above and deliberately no longer match content.md.
 
 ## The photo pipeline
 
 ```
 app/photos/            originals · ~588MB · gitignored · the source of truth
       ↓  npm run photos          (scripts/photo-map.js + scripts/build-photos.mjs)
-public/gallery/        derivatives · ~65MB · committed
+public/gallery/        derivatives · ~67MB · committed
 app/data/photos.json   generated manifest: dimensions + inline blur placeholder · committed
       ↓
 app/data/chapters.js → app/welcome/welcome.jsx → app/components/gallery/*
@@ -37,21 +60,22 @@ Two files decide what appears where. Everything else is generated or presentatio
 
 A chapter holds a `groups` array, so one shape covers every case:
 
-- **one group** → a single unlabelled strip. Every chapter is currently this.
-- **several** → each strip gets a mono label, its own count and its own prose.
-- **none** → a quiet, text-only chapter (Pilates, Silent retreat)
+- **one group** → a single unlabelled strip. Most sections are this.
+- **several** → each strip gets a mono label, its own count and its own optional prose.
+  **Trips** is the live example: one section holding five labelled runs, one per trip.
+- **none** → a quiet, text-only section. None exist right now (Pilates and Silent
+  retreat were removed), but the rendering path is kept.
 
-The multi-group path is unexercised right now — pottery/drawing/florals and the five trips
-were each promoted to their own chapter — but it is kept deliberately, because Capture is due
-a second group when the camera-collection photographs arrive. Deleting it would just mean
-writing it again.
+The lightbox opens on a *group*, not a section, so paging through Sakura never runs on into
+the Dead Sea. Folders map 1:1 to groups — the old hand-maintained filename lists that split
+`make/` in code are gone, because the photos are sorted on disk now.
 
-The lightbox opens on a *group*, not a chapter, so a chapter with several strips never pages
-from one into the next. Folders map 1:1 to groups — the old hand-maintained filename lists
-that split `make/` in code are gone, because the photos are sorted on disk now.
+A section's `lede` is optional; one without it opens straight to its photographs.
 
-A chapter's `lede` is optional: the trip chapters have none and open straight to their
-photographs.
+**Everything starts closed** — `useState("")` in `welcome.jsx`, so the page opens as a plain
+list of what is inside. One consequence: Radix unmounts closed panels, so the prerendered
+`index.html` contains the section *titles* and peek thumbnails but none of the prose,
+galleries or contact links. Fine for readers; worth knowing if search engines ever matter.
 
 ### Commands
 
@@ -64,8 +88,8 @@ photographs.
 There is no prune step: deleting an original leaves its derivatives orphaned in
 `public/gallery`, and `--force` re-encodes without removing them.
 
-Chapter numbers (`01`–`15`) derive from array position in `chapters.js`, so reordering
-renumbers automatically.
+Section order comes from array position in `chapters.js` — reordering is just moving an entry.
+(Sections are numbered nowhere in the UI on purpose; see the tone note at the top.)
 
 ### Common tasks
 
@@ -83,20 +107,21 @@ renumbers automatically.
 Deliberately unfinished, awaiting the user's words — none of it is broken:
 
 - Six of the seven **recipe notes** (everything but the rye sourdough) render as a muted `—`.
-- **The five trip chapters have no `lede`** — one sentence per place is what plan.md always
+- **The five Trips groups have no `text`** — one sentence per place is what plan.md always
   intended. Nothing renders while it is absent, so blank looks deliberate rather than missing.
-  content.md's "Day trips whenever the walls felt too close…" paragraph was retired when the
-  trips became separate chapters; it is still in content.md if you want it back.
-- The **Museums & galleries** lede is marked `draft: true` — it describes only what is
-  visibly in the photos, since content.md has no section for them.
-- plan.md's "Three things I made with my own hands" line went with the old **Make** chapter
-  when pottery, drawing and florals were split apart.
-- **Capture** currently shows the `moments` folder. Camera-collection photos are still to
-  come: add the folder, one line in `SOURCES`, and a second group on that chapter.
+  content.md's "Day trips whenever the walls felt too close…" paragraph is unused but still
+  in content.md if you want it back.
+- **Museums & galleries** and **For sale** ledes are marked `draft: true`. Both describe only
+  what is visibly in the photos, since content.md covers neither. For sale in particular is
+  deliberately generic — the folder holds a boxed waste disposer, a teapot and a variegated
+  monstera, not a line of pottery, and `IMG_3486` looks like a shop display with a price tag.
+- **Moments** is the `moments` folder but its prose is about collecting cameras — the section
+  was renamed after the text was written. Camera photographs are still to come: add a folder,
+  one line in `SOURCES`, and a second group on that section.
 
 ## What is committed, and why
 
-Committed: `public/gallery/` (~65MB) and `app/data/photos.json`.
+Committed: `public/gallery/` (~67MB) and `app/data/photos.json`.
 Ignored: `app/photos/` (~588MB of originals), `build/`, `node_modules/`.
 
 Derivatives are committed deliberately — it keeps image processing and `sharp` (a heavy
