@@ -58,13 +58,57 @@ export function Welcome() {
       for (const e of ["wheel", "touchstart", "keydown"])
         addEventListener(e, stop, opts);
 
+      const clamp = (y) =>
+        Math.min(Math.max(0, document.documentElement.scrollHeight - innerHeight), Math.max(0, y));
+
+      // iOS only — Android handles the per-frame version fine, and this path costs a
+      // visible pause before the page moves, so it is not worth applying there. Every
+      // scrollTo interrupts WebKit's own scrolling, and ~30 of them in 320ms stutters
+      // badly, worst on a section near the bottom where it also fights rubber-banding.
+      // One native smooth scroll after the accordion settles cannot overshoot either,
+      // because the layout has stopped changing by then.
+      //
+      // UA sniffing rather than feature detection: this is a specific platform quirk with
+      // nothing to feature-detect. iPadOS reports itself as MacIntel, hence the touch check.
+      const iOS =
+        /iP(hone|ad|od)/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      if (iOS) {
+        // `stop` above already flips `cancelled` on touchstart, so a reader who starts
+        // scrolling before the timer fires is left alone.
+        setTimeout(() => {
+          if (!cancelled) {
+            const next = clamp(scrollY + el.getBoundingClientRect().top - to);
+            if (Math.abs(next - scrollY) > 1) {
+              scrollTo({ top: next, behavior: reduced ? "auto" : "smooth" });
+            }
+          }
+          cleanup();
+        }, 240); // past the 200ms accordion animation
+        return;
+      }
+
+      const EPSILON = 1.5;
+      let settledFrames = 0;
+
       const step = (now) => {
         if (cancelled) return cleanup();
         const t = Math.min(1, (now - started) / DURATION);
         const want = reduced ? to : from + (to - from) * ease(t);
         const drift = el.getBoundingClientRect().top - want;
-        if (Math.abs(drift) > 0.5) scrollBy(0, drift);
-        t < 1 ? requestAnimationFrame(step) : cleanup();
+
+        // Clamp into the document: a section near the bottom may not have enough page
+        // left to reach REST, and pushing past the end achieves nothing.
+        const next = clamp(scrollY + drift);
+
+        if (Math.abs(next - scrollY) > EPSILON) {
+          scrollTo(0, next);
+          settledFrames = 0;
+        } else if (++settledFrames > 3 && t >= 1) {
+          return cleanup();
+        }
+        t < 1 || settledFrames <= 3 ? requestAnimationFrame(step) : cleanup();
       };
       const cleanup = () => {
         for (const e of ["wheel", "touchstart", "keydown"])
