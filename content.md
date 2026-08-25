@@ -20,7 +20,6 @@ Every now and then my husband and I grab a big batch of flowers and spend the da
 
 My plant corner has slowly become a little jungle. The monsteras filled out, the cacti kept multiplying, and one of them is apparently a bit uncommon. It wasn't planned. It just sort of happened.
 
----
 
 ## Cooking & baking & eating
 
@@ -45,8 +44,6 @@ I've always been a foodie, and lately I've been cooking a lot more. I finally le
 
 Tennis was something I wanted to do as a kid but never could. Now I finally am. Funny how being grown-up means you can finally chase the little dreams you gave up on.
 
----
-
 ## Moments
 
 Just some beautiful moments I've happened to capture lately.
@@ -67,8 +64,6 @@ happened. One sentence per trip is still to be written; nothing renders while th
 *Draft — written from what is visibly in the photographs, to be replaced.*
 
 Galleries and museums, whenever there was something on worth going for. Sculpture, painting, ceramics, the occasional installation — mostly just time spent looking at things other people made.
-
----
 
 ## For sale
 
