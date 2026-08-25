@@ -3,15 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "photos": "node scripts/build-photos.mjs",
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js"
+    "start": "vite preview",
+    "deploy": "react-router build && node scripts/prepare-pages.mjs && gh-pages -d build/client --dotfiles -b gh-pages"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.2.10",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@react-router/node": "7.15.1",
-    "@react-router/serve": "7.15.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "isbot": "^5.1.36",
@@ -27,6 +28,8 @@
   "devDependencies": {
     "@react-router/dev": "7.15.1",
     "@tailwindcss/vite": "^4.2.2",
+    "gh-pages": "^6.3.0",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.3"
   }

@@ -2,8 +2,13 @@ import { Welcome } from "../welcome/welcome";
 
 export function meta() {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    // The name lives here rather than on the page itself.
+    { title: "Natasha Tarnopolsky — Things I've been up to" },
+    {
+      name: "description",
+      content:
+        "Hobbies, mostly — pottery, drawing, flowers, bread, houseplants, day trips, and the photographs.",
+    },
   ];
 }
 

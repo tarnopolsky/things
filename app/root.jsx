@@ -10,6 +10,12 @@ import {
 import "./app.css";
 
 export const links = () => [
+  // All explicit, because the site is served from a subpath: a browser's unprompted
+  // request for /favicon.ico goes to the domain root and would find the résumé's icon.
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.svg`, type: "image/svg+xml" },
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon-32.png`, sizes: "32x32", type: "image/png" },
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico`, sizes: "48x48" },
+  { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -17,8 +23,9 @@ export const links = () => [
     crossOrigin: "anonymous",
   },
   {
+    // Display face only — body and metadata are served locally by @fontsource.
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&display=swap",
   },
 ];
 
