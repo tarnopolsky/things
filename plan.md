@@ -1,137 +1,103 @@
-# "A Conscious Pause" — page plan
+# "Things I've been up to" — page plan
 
-A standalone page, linked from the main résumé (tarnopolsky.github.io). Timeframe: January 2026 — now. Written like I'm telling a friend about it — warm, honest, no corporate polish. I'm not hiding that the timing lined up with my contract ending, but that's not the headline here.
+A single personal page listing what I do outside work, with the photographs. Linked from my
+résumé at tarnopolsky.github.io. Published to GitHub Pages at
+**https://tarnopolsky.github.io/things/**.
 
-**Style note (implementation, for later):** I like the accordion pattern used in `quite-recovery` (Radix UI) much more than the layout in `bezofica` — keep that in mind whenever we get to building this for real.
+Not a portfolio and not a blog — a list of hobbies with pictures, meant to be sendable to
+new colleagues without reading as a boast.
 
-## Page structure (order of sections)
+## Tone
 
-1. Intro
-2. Capture — photography & camera collecting
-3. Make — pottery wheel, drawing, florals
-4. Houseplants
-5. Cooking & baking (+ recipe list)
-6. Tennis
-7. Pilates
-8. Silent retreat
-9. Explore — travel & day trips
-10. Closing note
+This is the constraint everything else follows from. The page went through a version that
+read as show-offy, and fixing it was as much a layout problem as a wording one.
 
----
+Deliberately absent:
 
-## Intro
+- **Any framing of the page as a period of life.** It says nothing about why there is time
+  for any of this. It is a list of things done, not an account of a stretch of time.
+- **A thesis.** No pull-quote set in display type — a line set apart in large serif reads as
+  a position being asserted rather than something shared. (A David Bowie line is kept in the
+  data but commented out of the markup.)
+- **Totals.** No "N sections · N photographs" counter; quantifying reads as portfolio. The
+  per-row counts stay, because those are navigation.
+- **Section numbers and the word "chapters".** Numbering hobbies is a book metaphor that
+  lends them borrowed weight.
+- **Display type above ~2.75rem, tracked-out caps, magazine-style two-column intros,
+  em-dash subtitles.** Layout carries tone by itself: at 84px, a high-contrast serif turns
+  modest text into a statement.
 
-> I could have just waited for the next job to come along. Instead, I gave myself something different — a real, deliberate pause. Not rushing straight into another search, but finally making time for the things I never usually get to. It so happens this started right when my contract ended, back in January 2026 — I'm not hiding that, it's just not really what this is about. This is about what I actually did with the time.
+The author's name appears **nowhere on the page** — only in the tab title
+("Natasha Tarnopolsky — Things I've been up to"). The page is signed, not announced.
 
-Optional pull-quote (your own line from bezofica, translated — keep if it still feels true):
-> "A financial cushion isn't luck. It's a choice I let myself make."
+## Structure
 
----
+Heading, one line of intro, then the sections as a plain list. Everything starts collapsed,
+so the page opens as an index of what is inside.
 
-## 1. Capture — photography & camera collecting
+> By day I'm a developer. Outside of that, this is the fun stuff — some I've done forever,
+> some I just started.
 
-**Intro:**
-> I collect cameras — film and digital, both. These past few months finally gave me room to dig the whole collection out, clean a few up, and just shoot more.
+| # | Section | Photos | Notes |
+| --- | --- | --- | --- |
+| 1 | Pottery wheel | 24 | |
+| 2 | Drawing | 21 | |
+| 3 | Florals | 16 | |
+| 4 | Houseplants | 9 | |
+| 5 | Cooking & baking & eating | 14 | plus a recipe list |
+| 6 | Tennis & Sports | 9 | |
+| 7 | Moments | 50 | everyday photographs |
+| 8 | Trips | 42 | five labelled runs, one per trip |
+| 9 | Museums & galleries | 12 | |
+| 10 | For sale | 2 | a notice, not a hobby — sits last, by the contacts |
 
-**Caption style:**
-- "Film and digital — I'd been collecting for a while, just never had time to actually go through it all until now."
-- (space for a story about a specific/rare camera, if there's one worth telling)
+199 photographs in total, from 192 originals.
 
----
+**Trips** is the one section with several groups: Jerusalem at Hanukkah, Sakura, Almond
+blossom, Poppies, Dead Sea — roughly in the order they happened. Each takes an optional
+sentence; none are written yet, and nothing renders while one is empty.
 
-## 2. Make — pottery wheel, drawing, florals
+Closing: an invitation to email (the address hides behind the words "email me") and a link
+to the professional résumé, opening in a new tab.
 
-**Intro:**
-> Three things I made with my own hands.
+## Behaviour
 
-**Pottery wheel:**
-- "Started going to a ceramics studio, learning the wheel. Not cheap, but every single class left me feeling reset — and little by little, I got better."
-- Ready-made quote (from your bezofica journal — feel free to use as-is): *"My instructor told me I have 'a good feel for clay.' Honestly the best compliment I got all year."*
-- Caption style to match your "First bowl off the wheel" journal post — a small story, not a how-to.
+- Each section opens into one or more **horizontally scrolling film strips** — photographs at
+  their true proportions, shared height, nothing cropped to fit a grid.
+- Clicking a photograph opens a **full-screen lightbox** with a thumbnail rail along the
+  bottom, so a 50-photo section can be browsed without scrolling sideways forever.
+- The lightbox opens on a *group*, not a section: paging through Sakura never runs on into
+  the Dead Sea.
+- Opening a section **holds its heading still** while the accordion animates, rather than
+  scrolling to it.
+- A 50-photo strip is **one tab stop**, not fifty (roving tabindex).
 
-**Drawing:**
-- "Drew almost every day for three months straight, and it shows — my hand got so much steadier."
+## Design
 
-**Florals:**
-- "For my birthday, my husband and I bought one enormous armful of flowers from a supplier and put together 40 bouquets. They filled the house for two more weeks."
+Warm paper ground, Fraunces for headings, Figtree for body, JetBrains Mono for the small
+counts. Dark mode follows the system setting. The favicon is a red Le Creuset-style teapot.
 
-*(Optional — a small "by the numbers" strip, if that appeals to you: drawings made, pieces thrown, that kind of thing. You already had this tracked in bezofica.)*
+## Technical
 
----
+- **Photo pipeline.** Full-resolution originals in `app/photos/` (609MB, gitignored) →
+  `npm run photos` → AVIF + WebP at three widths plus an inline blur placeholder in
+  `public/gallery/` (67MB, committed), with a manifest at `app/data/photos.json`.
+- **Two hand-edited files.** `scripts/photo-map.js` maps folders to gallery groups;
+  `app/data/chapters.js` holds every word on the page.
+- **Static.** `ssr: false` + `prerender: true` — no Node server. `npm run deploy` builds and
+  pushes to the `gh-pages` branch.
+- **Subpath.** The site is served from `/things/`, so `base`, `basename` and the photo-path
+  prefix in `chapters.js` all have to agree. Photo paths live in data, which Vite does not
+  rewrite, so they are prefixed in code.
 
-## 3. Houseplants
+See [CLAUDE.md](CLAUDE.md) for the full pipeline, the deployment steps and the constraints
+worth knowing before editing the gallery.
 
-**Intro:**
-> My cacti and monsteras had a very good few months — some of them are genuinely rare, like a Thai Constellation.
+## Still open
 
-**Captions:** room for a note on individual plants, if there's a story worth telling (fill in).
-
----
-
-## 4. Cooking & baking
-
-**Intro:**
-> Bread, pancakes, jam, pickles, brisket, homemade ice cream.
-
-**Recipe list:**
-
-| Dish | Note |
-|---|---|
-| Rye sourdough bread | Baked it almost every Saturday |
-| Pancakes | |
-| Jam | |
-| Pickled radish | |
-| Pickled cucumbers | |
-| Brisket | |
-| Homemade ice cream | |
-
-→ First row's already written (from your bezofica recipe) — fill the rest the same way: recipe/source + a short note on what worked.
-
----
-
-## 5. Tennis
-
-**Intro:**
-> Once a week, no pressure about it. Sports were never really my thing — but I kept showing up anyway.
-
----
-
-## 6. Pilates
-
-**Intro:**
-> A second weekly session, just for balance and feeling steady in my body.
-
----
-
-## 7. Silent retreat
-
-**Intro:**
-> A full day of silence at a yoga retreat — the first time I'd ever tried anything like it.
-
----
-
-## 8. Explore — travel & day trips
-
-**Intro:**
-> Day trips — Jerusalem, or just out into nature, whenever I needed a change of scenery.
-
-**Captions:** place + one sentence on what made each trip memorable (fill in once you know which trips are making the cut).
-
----
-
-## Closing note
-
-A short, warm paragraph easing back toward the résumé. Add one gentle, general line — no details, no dedicated section: steady support from a therapist through all of this, quietly, but it mattered. Optional closing pull-quote (your own line, translated): *"This was, honestly, the most honest and full stretch of my adult life."*
-
-End with a link back: "See my résumé →" / contact.
-
----
-
-## What's still needed from you
-
-1. Send over / sort your photos into these categories (even a rough pass — 5–10 per category is plenty). *(In progress — see note below.)*
-2. Fill in the recipe table (everything but the bread).
-3. Decide: keep the bezofica quotes/numbers as-is, or rewrite them in your own words for this version?
-4. Separately, whenever you're ready to talk implementation: build further on bezofica, or start fresh — still open, no rush.
-
-**Photo sorting status:** photos from this folder are being sorted into `sorted/<category>/` subfolders right now (capture, make, houseplants, cooking-baking, tennis, pilates, silent-retreat, explore, unsorted) — will report back with counts once done.
+- One sentence per trip in **Trips**.
+- Notes against the recipes in **Cooking & baking & eating**.
+- The **Museums & galleries** and **For sale** ledes are drafts, written from what is
+  visibly in the photographs.
+- **Moments** is where camera-collection photographs go when they exist — add the folder,
+  one line in `SOURCES`, and a second group on that section.

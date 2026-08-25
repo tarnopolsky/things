@@ -1,37 +1,20 @@
-# A Conscious Pause
+# Things I've been up to
 
-Okay, so — funny story. I got laid off in January, and instead of doing the sensible thing and updating my résumé that same week, I did... none of that. Truth is, I'd been running on fumes for a while before that anyway — thirteen years of work will quietly burn you out if you let it — so once the shock wore off, this pause ended up feeling less like a crisis and more like a long overdue breath of fresh air. Permission, finally, to just exist for a while without needing to be productive about it.
+By day I'm a developer. Outside of that, this is the fun stuff — some I've done forever, some I just started.
 
-For a while I just let myself have nothing to do. Then, slowly, I started filling the space with things I'd been putting off for years — a pottery wheel, a garden that finally got some attention, way too much bread. This page is a little bit of all of it.
-
-I'm not pretending the job loss didn't happen — it obviously did, that's how I ended up with all this time. But that's not really what this is about. This is about what I did once I had it.
-
-*A financial cushion isn't luck. It's a choice I let myself make.*
-
----
-
-## Capture — photography & camera collecting
-
-Just some beautiful moments I've happened to capture lately.
 ---
 
 ## Pottery wheel
 
 Ceramics clears my head. Even when the clay refuses to cooperate, I leave the wheel feeling rested and a little lighter. Turns out you can't overthink your week when both hands are covered in mud.
 
----
-
 ## Drawing
 
 Like ceramics, drawing clears out the noise in my head. Half the fun is switching between whatever's around — markers, crayons, paint — and seeing what each one does. And every so often I look back through the sketchbook and catch myself surprised by the progress.
 
----
-
 ## Florals
 
 Every now and then my husband and I grab a big batch of flowers and spend the day arranging them. Soon the apartment looks like a flower shop.
-
----
 
 ## Houseplants
 
@@ -39,11 +22,24 @@ My plant corner has slowly become a little jungle. The monsteras filled out, the
 
 ---
 
-## Cooking & baking
+## Cooking & baking & eating
 
 I've always been a foodie, and lately I've been cooking a lot more. I finally learned to bake my own bread, plus a few other treats along the way. I like keeping recipes simple, so I'll be sharing my favorites here.
 
----
+**What actually worked** — a note against each is still to be written:
+
+| Dish | Note |
+|---|---|
+| Blinches | |
+| Orange Jam | |
+| Pickled radish | |
+| Pickled mushrooms | |
+| Brisket | |
+| Homemade ice cream | |
+| Homemade bread | |
+| Banana bread | |
+| Greek Fava | |
+| Sirniki | |
 
 ## Tennis & Sports
 
@@ -51,28 +47,46 @@ Tennis was something I wanted to do as a kid but never could. Now I finally am. 
 
 ---
 
-## Pilates
+## Moments
 
-A second weekly session — less about fitness, more about feeling steady in my own body again.
+Just some beautiful moments I've happened to capture lately.
+
+## Trips
+
+No intro text — the section opens straight to five labelled runs, roughly in the order they
+happened. One sentence per trip is still to be written; nothing renders while they are empty.
+
+- Jerusalem at Hanukkah
+- Sakura
+- Almond blossom
+- Poppies
+- Dead Sea
+
+## Museums & galleries
+
+*Draft — written from what is visibly in the photographs, to be replaced.*
+
+Galleries and museums, whenever there was something on worth going for. Sculpture, painting, ceramics, the occasional installation — mostly just time spent looking at things other people made.
 
 ---
 
-## Silent retreat
+## For sale
 
-I spent a full day in silence at a yoga retreat. No phone, no talking, just... quiet. It was strange and a little uncomfortable, and then, somewhere in the middle of it, it wasn't.
+*Draft — to be replaced. Sits last, next to the contacts: a notice rather than a hobby.*
 
----
+A few things looking for a new home. Get in touch if you want any of them.
 
-## Explore
-
-Day trips whenever the walls felt too close — Jerusalem a few times, or just out into nature. Nothing fancy, just a change of scenery when I needed one.
+→ Email me
 
 ---
 
 ## Closing
 
-I also had steady support from a therapist through all of this. It doesn't really need its own section, but it mattered, so it's here.
+If you'd like to get in touch, [email me](mailto:natashatarn+blog@gmail.com).
 
-Looking back, this stretch of time — unplanned as its start was — has genuinely been one of the fullest, most honest periods of my adult life.
+[My professional résumé →](https://tarnopolsky.github.io)
 
-If you want to see what I actually do for work, my résumé is right here →
+---
+
+*Kept in the data but not rendered: "I don't know where I'm going from here, but I promise it
+won't be boring." — David Bowie. The markup for it is commented out in `welcome.jsx`.*
