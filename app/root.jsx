@@ -10,6 +10,9 @@ import {
 import "./app.css";
 
 export const links = () => [
+  // Explicit, because the site is served from a subpath: without this the browser
+  // looks for /favicon.ico at the domain root and gets a 404.
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico` },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

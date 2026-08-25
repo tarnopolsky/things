@@ -6,7 +6,8 @@
     "photos": "node scripts/build-photos.mjs",
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "vite preview"
+    "start": "vite preview",
+    "deploy": "react-router build && node scripts/prepare-pages.mjs && gh-pages -d build/client --dotfiles -b gh-pages"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.2.10",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@react-router/dev": "7.15.1",
     "@tailwindcss/vite": "^4.2.2",
+    "gh-pages": "^6.3.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.3"

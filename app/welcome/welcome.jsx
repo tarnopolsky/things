@@ -180,20 +180,24 @@ export function Welcome() {
                       {chapter.lede}
                     </p>
 
-                    {chapter.links && (
+                    {/* A link with no href yet is dropped rather than rendered, so a
+                        half-filled contact never reaches the page. */}
+                    {chapter.links?.some((l) => l.href) && (
                       <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
-                        {chapter.links.map((l) => (
-                          <li key={l.label}>
-                            <a
-                              href={l.href}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
-                            >
-                              {l.label}
-                            </a>
-                          </li>
-                        ))}
+                        {chapter.links
+                          .filter((l) => l.href)
+                          .map((l) => (
+                            <li key={l.label}>
+                              <a
+                                href={l.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+                              >
+                                {l.label}
+                              </a>
+                            </li>
+                          ))}
                       </ul>
                     )}
                   </div>
@@ -301,21 +305,28 @@ export function Welcome() {
           `lg:grid-cols-2` at the same time if you bring it back. */}
       <footer className="grid gap-x-16 gap-y-10 pt-20">
         <div>
-          <p className="text-[1.0625rem] leading-relaxed text-muted-foreground">
-            {closing.invitation}{" "}
-            <a
-              href={`mailto:${closing.email}`}
-              className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
-            >
-              {closing.email}
-            </a>
-          </p>
+          {/* Skipped entirely while the address is empty — an invitation to email with no
+              address to email is worse than no invitation. */}
+          {closing.email && (
+            <p className="mb-8 text-[1.0625rem] leading-relaxed text-muted-foreground">
+              {closing.invitation}{" "}
+              <a
+                href={`mailto:${closing.email}`}
+                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+              >
+                {closing.emailLabel}
+              </a>
+              .
+            </p>
+          )}
 
-          <p className="mt-8">
+          <p>
             {/* Inline, not inline-flex: as a flex item the arrow stops flowing with
               the text and lands mid-line as soon as the label wraps. */}
             <a
               href={closing.link.href}
+              target="_blank"
+              rel="noreferrer"
               className="group/link text-[1.0625rem] text-foreground underline-offset-[6px] hover:underline"
             >
               {closing.link.label}

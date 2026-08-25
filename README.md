@@ -39,13 +39,18 @@ See [CLAUDE.md](CLAUDE.md) for the full pipeline, including how to prune deleted
 
 ```bash
 npm run build   # emits fully static HTML to build/client/
-npm start       # preview that build locally
+npm start       # preview that build locally — at /things/, not /
+npm run deploy  # build and publish to the gh-pages branch
 ```
 
-The site is prerendered — `build/client/` is plain HTML, CSS, JS and images with no Node
-server behind it. Deploy that folder to Netlify, Cloudflare Pages, GitHub Pages, S3, or any
-static host.
+The site is published to **https://tarnopolsky.github.io/things/**. It is prerendered, so
+`build/client/` is plain HTML, CSS, JS and images with no Node server behind it.
+
+Because it is served from a subpath rather than a domain root, `base` (vite.config.js),
+`basename` (react-router.config.js) and the photo-path prefix in `app/data/chapters.js` all
+have to agree. See the deployment section of [CLAUDE.md](CLAUDE.md) before changing any of
+them.
 
 Note that `app/photos/` (the full-resolution originals) is gitignored, while the generated
-`public/gallery/` derivatives are committed — so a fresh clone can build and deploy without
-the originals, but needs them to regenerate anything.
+`public/gallery/` derivatives are committed — a fresh clone can build and deploy without the
+originals, but needs them to regenerate anything.

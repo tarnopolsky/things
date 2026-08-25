@@ -5,4 +5,6 @@ export default {
   // deploy build/client/ straight to a CDN.
   ssr: false,
   prerender: true,
+  // GitHub Pages serves this from a subpath. Keep in sync with `base` in vite.config.js.
+  basename: "/things/",
 };

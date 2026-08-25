@@ -1,5 +1,8 @@
 import photos from "./photos.json";
 
+// "/things" in production, "" when served from a root. Vite substitutes BASE_URL at build.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 // All copy for the page lives here, transcribed verbatim from content.md — the one
 // exception is the Museums chapter, marked `draft` below, which content.md has no text for.
 //
@@ -23,8 +26,12 @@ export const intro = {
 
 // The name appears nowhere on the page itself — only in the tab title.
 export const closing = {
-  invitation: "If you'd like to get in touch, email me.",
-  email: "natashatarn@gmail.com",
+  // The address is never printed — it hides behind `emailLabel`, which becomes the link.
+  invitation: "If you'd like to get in touch,",
+  emailLabel: "email me",
+  // Plus-addressed so mail from the site can be filtered. Emptying this string hides the
+  // whole invitation line rather than shipping a dead address.
+  email: "natashatarn+blog@gmail.com",
   link: {
     href: "https://tarnopolsky.github.io",
     label: "My professional résumé",
@@ -71,7 +78,7 @@ export const chapters = [
     ],
   },
   {
-    title: "Tennis",
+    title: "Tennis & Sports",
     lede: "Tennis was something I wanted to do as a kid but never could. Now I finally am. Funny how being grown-up means you can finally chase the little dreams you gave up on.",
     groups: [{ key: "tennis", alt: "The tennis court, most often empty" }],
   },
@@ -109,15 +116,19 @@ export const chapters = [
     // monstera), so this is deliberately generic. Rewrite it, and add a shop link if there
     // is one. NB: IMG_3486 looks like a shop display with a price tag, not your own piece.
     draft: true,
-    lede: "A few things looking for a new home. Reach me either way and I'll get back to you.",
-    links: [
-      { label: "WhatsApp", href: "https://wa.me/972548150336" },
-      { label: "natashatarn@gmail.com", href: "mailto:natashatarn@gmail.com" },
-    ],
+    lede: "A few things looking for a new home. Get in touch if you want any of them.",
+    // A link with an empty href is filtered out before rendering.
+    links: [{ label: "Email me", href: "mailto:natashatarn+blog@gmail.com" }],
     groups: [{ key: "forSale", alt: "Something looking for a new home" }],
   },
 ].map((chapter, i) => {
-  const groups = chapter.groups.map((g) => ({ ...g, photos: photos[g.key] ?? [] }));
+  // photos.json stores plain strings like "/gallery/moments-img-1716". Vite rewrites
+  // imported asset URLs for the base path but never touches data, so the prefix has to
+  // be applied here — this is the single place every photo URL passes through.
+  const groups = chapter.groups.map((g) => ({
+    ...g,
+    photos: (photos[g.key] ?? []).map((p) => ({ ...p, src: BASE + p.src })),
+  }));
   return {
     ...chapter,
     groups,

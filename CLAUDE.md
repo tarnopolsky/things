@@ -142,9 +142,40 @@ hardcode `400.webp` at ~29KB each. A 128px tier would cut first-paint thumbnail 
 
 ## Deployment
 
+Published to **GitHub Pages at https://tarnopolsky.github.io/things/** — a project repo, so
+the site lives on a subpath, not a domain root.
+
+```
+npm run deploy      # build → flatten → push build/client to the gh-pages branch
+```
+
 `react-router.config.js` sets `ssr: false` + `prerender: true`, so `npm run build` emits
-fully static HTML into `build/client/`. Deploy that folder to any static host or CDN. There
-is no Node server — `npm start` is only a local preview of the built output.
+fully static HTML into `build/client/`. There is no Node server — `npm start` is only a local
+preview, and it serves at **`/things/`, not `/`**.
+
+### Three things the subpath needs
+
+1. **`base` in `vite.config.js` and `basename` in `react-router.config.js`** must stay in
+   sync. `base` fixes asset URLs; `basename` fixes routing.
+2. **Photo paths are prefixed by hand.** `photos.json` stores plain strings like
+   `/gallery/…`, and Vite only rewrites *imported* asset URLs — never data. `chapters.js`
+   applies `import.meta.env.BASE_URL` in its `.map()`, which is the one place every photo
+   URL passes through. Miss this and every image 404s on the deployed site while working
+   perfectly on a root-served dev server.
+3. **`scripts/prepare-pages.mjs` flattens the output.** With a `basename` set, React Router
+   prerenders to `build/client/things/index.html` — but Pages already mounts the branch root
+   at `/things/`, so shipping it as-is would serve the site from `/things/things/`. The
+   script moves it up a level, copies `index.html` to `404.html`, and drops `.DS_Store`.
+
+`public/.nojekyll` is also required: Jekyll ignores anything starting with an underscore,
+and React Router emits `__spa-fallback.html`. The `--dotfiles` flag on `gh-pages` is what
+gets it into the branch.
+
+### Deploy is local-only
+
+`npm run deploy` pushes from your machine. The photographs are in the repo now, so CI *could*
+build it, but the current setup has no workflow. Note the size: ~67MB of derivatives on the
+source branch plus ~80MB of built site on `gh-pages`.
 
 This is safe because the app has no `loader`, `action` or `headers` exports, which are the
 exports `ssr: false` prohibits. Adding any of them means reverting to `ssr: true` and a Node
