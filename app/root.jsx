@@ -10,9 +10,12 @@ import {
 import "./app.css";
 
 export const links = () => [
-  // Explicit, because the site is served from a subpath: without this the browser
-  // looks for /favicon.ico at the domain root and gets a 404.
-  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico` },
+  // All explicit, because the site is served from a subpath: a browser's unprompted
+  // request for /favicon.ico goes to the domain root and would find the résumé's icon.
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.svg`, type: "image/svg+xml" },
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon-32.png`, sizes: "32x32", type: "image/png" },
+  { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico`, sizes: "48x48" },
+  { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}apple-touch-icon.png` },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
