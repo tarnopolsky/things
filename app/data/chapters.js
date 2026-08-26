@@ -137,8 +137,6 @@ export const chapters = [
   };
 });
 
-export const totalPhotos = chapters.reduce((n, c) => n + c.count, 0);
-
 // The first few frames of a chapter, for the peek strip on a collapsed row.
 export const peek = (chapter, n = 4) =>
   chapter.groups.flatMap((g) => g.photos).slice(0, n);
