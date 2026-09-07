@@ -29,16 +29,16 @@ I've always been a foodie, and lately I've been cooking a lot more. I finally le
 
 | Dish | Note |
 |---|---|
-| Blinches | |
-| Orange Jam | |
-| Pickled radish | |
-| Pickled mushrooms | |
-| Brisket | |
-| Homemade ice cream | |
-| Homemade bread | |
-| Banana bread | |
-| Greek Fava | |
-| Sirniki | |
+| Blinches | https://youtu.be/E_cohB81wL8?si=lGFG5t1vkAA3zYHY |
+| Orange Jam | https://youtu.be/fLruaxqOG04?si=lOIN-gYTji-jAXaQ|
+| Pickled radish |https://youtu.be/9hApmmGfh5A?si=S47fsxPxPP92cvza |
+| Pickled mushrooms | https://youtu.be/OlCCMAP0Qm4?si=AEK885UxAOW4FKg_|
+| Brisket | https://vt.tiktok.com/ZSq6fQRLK/|
+| Homemade ice cream | https://youtu.be/m35Tr1UiDPg?si=TzWQuHCcucRZ4ABg|
+| Homemade bread | https://youtu.be/ILVRaV8Sli4?si=f3eb-W44P1EOJcQd|
+| Banana bread | https://youtu.be/Ob8eL4mMOys?si=BwTnxyDrJAEiMumW |
+| Greek Fava |https://youtube.com/shorts/FrWEqWc0BcI?si=1qju02EBukoz_oel |
+| Sirniki | https://youtu.be/rkn2ByzbBzk?si=S2YER3gREmFa6qQb|
 
 ## Tennis & Sports
 

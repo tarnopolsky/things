@@ -106,7 +106,9 @@ Section order comes from array position in `chapters.js` — reordering is just 
 
 Deliberately unfinished, awaiting the user's words — none of it is broken:
 
-- Six of the seven **recipe notes** (everything but the rye sourdough) render as a muted `—`.
+- **Recipe notes.** Every dish now carries a `link` to the video recipe actually followed,
+  which renders as a "YouTube"/"TikTok" link in the second column. The prose `note` beside
+  it is still unwritten; when one is added it renders before the link.
 - **The five Trips groups have no `text`** — one sentence per place is what plan.md always
   intended. Nothing renders while it is absent, so blank looks deliberate rather than missing.
   content.md's "Day trips whenever the walls felt too close…" paragraph is unused but still

@@ -20,7 +20,8 @@ export const intro = {
   paragraphs: [
     "By day I'm a developer. Outside of that, this is the fun stuff — some I've done forever, some I just started.",
   ],
-  quote: "I don't know where I'm going from here, but I promise it won't be boring.",
+  quote:
+    "I don't know where I'm going from here, but I promise it won't be boring.",
   attribution: "David Bowie",
 };
 
@@ -47,7 +48,9 @@ export const chapters = [
   {
     title: "Drawing",
     lede: "Like ceramics, drawing clears out the noise in my head. Half the fun is switching between whatever's around — markers, crayons, paint — and seeing what each one does. And every so often I look back through the sketchbook and catch myself surprised by the progress.",
-    groups: [{ key: "drawing", alt: "A page from three months of near-daily drawing" }],
+    groups: [
+      { key: "drawing", alt: "A page from three months of near-daily drawing" },
+    ],
   },
   {
     title: "Florals",
@@ -63,18 +66,19 @@ export const chapters = [
     title: "Cooking & baking & eating",
     lede: "I've always been a foodie, and lately I've been cooking a lot more. I finally learned to bake my own bread, plus a few other treats along the way. I like keeping recipes simple, so I'll be sharing my favorites here.",
     groups: [{ key: "food", alt: "Something cooked or baked at home" }],
-    // Notes are yours to fill in — anything without one renders as a placeholder.
+    // `link` is the recipe actually followed; `note` (prose, still to be written) is
+    // optional and renders before it. A row with neither falls back to a placeholder.
     recipes: [
-      { dish: "Blinches" },
-      { dish: "Orange Jam" },
-      { dish: "Pickled radish" },
-      { dish: "Pickled mushrooms" },
-      { dish: "Brisket" },
-      { dish: "Homemade ice cream" },
-      { dish: "Homemade bread" },
-      { dish: "Banana bread" },
-      { dish: "Greek Fava" },
-      { dish: "Sirniki" },
+      { dish: "Blinches", link: "https://youtu.be/E_cohB81wL8" },
+      { dish: "Orange Jam", link: "https://youtu.be/fLruaxqOG04" },
+      { dish: "Pickled radish", link: "https://youtu.be/9hApmmGfh5A" },
+      { dish: "Pickled mushrooms", link: "https://youtu.be/OlCCMAP0Qm4" },
+      { dish: "Brisket", link: "https://vt.tiktok.com/ZSq6fQRLK/" },
+      { dish: "Homemade ice cream", link: "https://youtu.be/m35Tr1UiDPg" },
+      { dish: "Homemade bread", link: "https://youtu.be/ILVRaV8Sli4" },
+      { dish: "Banana bread", link: "https://youtu.be/Ob8eL4mMOys" },
+      { dish: "Greek Fava", link: "https://youtube.com/shorts/FrWEqWc0BcI" },
+      { dish: "Sirniki", link: "https://youtu.be/rkn2ByzbBzk" },
     ],
   },
   {
@@ -94,7 +98,11 @@ export const chapters = [
   {
     title: "Trips",
     groups: [
-      { key: "jerusalem", label: "Jerusalem at Hanukkah", alt: "Jerusalem during Hanukkah" },
+      {
+        key: "jerusalem",
+        label: "Jerusalem at Hanukkah",
+        alt: "Jerusalem during Hanukkah",
+      },
       { key: "sakura", label: "Sakura", alt: "Cherry blossom" },
       { key: "almond", label: "Almond blossom", alt: "Almond blossom" },
       { key: "poppy", label: "Poppies", alt: "Poppies in bloom" },

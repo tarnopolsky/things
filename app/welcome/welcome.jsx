@@ -13,6 +13,14 @@ import { cn } from "@/lib/utils";
 // Prose sits in a narrow measure; photographs run the full width beneath it.
 const MEASURE = "max-w-[46ch]";
 
+// Recipe links are videos, so the label names where it plays rather than repeating the dish.
+const recipeSource = (href) =>
+  href.includes("tiktok")
+    ? "TikTok"
+    : href.includes("you")
+      ? "YouTube"
+      : "recipe";
+
 export function Welcome() {
   // Everything starts closed: the page opens as a plain list of what is inside.
   const [open, setOpen] = useState("");
@@ -59,7 +67,10 @@ export function Welcome() {
         addEventListener(e, stop, opts);
 
       const clamp = (y) =>
-        Math.min(Math.max(0, document.documentElement.scrollHeight - innerHeight), Math.max(0, y));
+        Math.min(
+          Math.max(0, document.documentElement.scrollHeight - innerHeight),
+          Math.max(0, y),
+        );
 
       // iOS only — Android handles the per-frame version fine, and this path costs a
       // visible pause before the page moves, so it is not worth applying there. Every
@@ -317,7 +328,7 @@ export function Welcome() {
                       What actually worked
                     </h3>
                     <dl className="mt-5 divide-y divide-border border-t border-border">
-                      {chapter.recipes.map(({ dish, note }) => (
+                      {chapter.recipes.map(({ dish, note, link }) => (
                         <div
                           key={dish}
                           className="flex flex-wrap gap-x-6 gap-y-1 py-3"
@@ -328,10 +339,23 @@ export function Welcome() {
                           <dd
                             className={cn(
                               "flex-[2] text-[0.9375rem] text-muted-foreground",
-                              !note && "opacity-45",
+                              !note && !link && "opacity-45",
                             )}
                           >
-                            {note ?? "coming soon…"}
+                            {note}
+                            {note && link && " "}
+                            {link ? (
+                              <a
+                                href={link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+                              >
+                                {recipeSource(link)}
+                              </a>
+                            ) : (
+                              !note && "coming soon…"
+                            )}
                           </dd>
                         </div>
                       ))}
