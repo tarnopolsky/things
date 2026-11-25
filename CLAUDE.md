@@ -62,7 +62,7 @@ A chapter holds a `groups` array, so one shape covers every case:
 
 - **one group** → a single unlabelled strip. Most sections are this.
 - **several** → each strip gets a mono label, its own count and its own optional prose.
-  **Trips** is the live example: one section holding five labelled runs, one per trip.
+  **Trips** is the live example: one section holding six labelled runs, one per trip.
 - **none** → a quiet, text-only section. None exist right now (Pilates and Silent
   retreat were removed), but the rendering path is kept.
 
@@ -109,7 +109,7 @@ Deliberately unfinished, awaiting the user's words — none of it is broken:
 - **Recipe notes.** Every dish now carries a `link` to the video recipe actually followed,
   which renders as a "YouTube"/"TikTok" link in the second column. The prose `note` beside
   it is still unwritten; when one is added it renders before the link.
-- **The five Trips groups have no `text`** — one sentence per place is what plan.md always
+- **The six Trips groups have no `text`** — one sentence per place is what plan.md always
   intended. Nothing renders while it is absent, so blank looks deliberate rather than missing.
   content.md's "Day trips whenever the walls felt too close…" paragraph is unused but still
   in content.md if you want it back.

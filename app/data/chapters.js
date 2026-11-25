@@ -40,6 +40,24 @@ export const closing = {
 };
 
 export const chapters = [
+  // One chapter, six labelled strips — roughly in the order the trips happened (by capture
+  // sequence). Each group takes an optional `text`; nothing renders while one is empty, so
+  // leaving them blank looks deliberate rather than unfinished.
+  {
+    title: "Trips",
+    groups: [
+      {
+        key: "jerusalem",
+        label: "Jerusalem at Hanukkah",
+        alt: "Jerusalem during Hanukkah",
+      },
+      { key: "sakura", label: "Sakura", alt: "Cherry blossom" },
+      { key: "almond", label: "Almond blossom", alt: "Almond blossom" },
+      { key: "poppy", label: "Poppies", alt: "Poppies in bloom" },
+      { key: "deadsea", label: "Dead Sea", alt: "The Dead Sea" },
+      { key: "rome", label: "Rome", alt: "Rome" },
+    ],
+  },
   {
     title: "Pottery wheel",
     lede: "Ceramics clears my head. Even when the clay refuses to cooperate, I leave the wheel feeling rested and a little lighter. Turns out you can't overthink your week when both hands are covered in mud.",
@@ -91,23 +109,6 @@ export const chapters = [
     lede: "Just some beautiful moments I've happened to capture lately.",
     // Photos of the collection itself are still to come; add them as a second group here.
     groups: [{ key: "moments", alt: "A photograph taken this year" }],
-  },
-  // One chapter, five labelled strips — roughly in the order the trips happened (by capture
-  // sequence). Each group takes an optional `text`; nothing renders while one is empty, so
-  // leaving them blank looks deliberate rather than unfinished.
-  {
-    title: "Trips",
-    groups: [
-      {
-        key: "jerusalem",
-        label: "Jerusalem at Hanukkah",
-        alt: "Jerusalem during Hanukkah",
-      },
-      { key: "sakura", label: "Sakura", alt: "Cherry blossom" },
-      { key: "almond", label: "Almond blossom", alt: "Almond blossom" },
-      { key: "poppy", label: "Poppies", alt: "Poppies in bloom" },
-      { key: "deadsea", label: "Dead Sea", alt: "The Dead Sea" },
-    ],
   },
   {
     title: "Museums & galleries",

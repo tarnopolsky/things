@@ -23,6 +23,7 @@ export const SOURCES = {
   poppy: [{ dir: "tripPoppyBlum" }],
   deadsea: [{ dir: "tripDeadSea" }],
   jerusalem: [{ dir: "tripJerusalemHanukkah" }],
+  rome: [{ dir: "tripRome" }],
 
   museum: [{ dir: "museum" }],
 };
